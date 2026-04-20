@@ -1,0 +1,260 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Deep space base */
+    --background: 222 47% 4%;
+    --foreground: 160 30% 96%;
+
+    --card: 222 40% 7%;
+    --card-foreground: 160 30% 96%;
+
+    --popover: 222 40% 7%;
+    --popover-foreground: 160 30% 96%;
+
+    /* Neon cyan/green primary */
+    --primary: 160 100% 55%;
+    --primary-foreground: 222 47% 4%;
+    --primary-glow: 160 100% 70%;
+
+    --secondary: 195 100% 60%;
+    --secondary-foreground: 222 47% 4%;
+
+    --muted: 222 30% 12%;
+    --muted-foreground: 200 15% 65%;
+
+    --accent: 195 100% 50%;
+    --accent-foreground: 222 47% 4%;
+
+    /* Emotion colors */
+    --emotion-critical: 0 90% 60%;
+    --emotion-sad: 220 80% 60%;
+    --emotion-calm: 195 100% 60%;
+    --emotion-healing: 140 80% 55%;
+    --emotion-angry: 15 95% 55%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 160 30% 96%;
+
+    --border: 160 50% 20%;
+    --input: 222 30% 12%;
+    --ring: 160 100% 55%;
+
+    --radius: 1rem;
+
+    /* Gradients */
+    --gradient-aurora: linear-gradient(135deg, hsl(160 100% 55% / 0.3), hsl(195 100% 60% / 0.3), hsl(280 100% 65% / 0.2));
+    --gradient-glow: radial-gradient(circle at center, hsl(160 100% 55% / 0.4), transparent 70%);
+    --gradient-panel: linear-gradient(135deg, hsl(222 40% 8% / 0.8), hsl(222 50% 5% / 0.6));
+
+    /* Shadows / glows */
+    --shadow-neon: 0 0 40px hsl(160 100% 55% / 0.5), 0 0 80px hsl(160 100% 55% / 0.2);
+    --shadow-cyan: 0 0 30px hsl(195 100% 60% / 0.4);
+    --shadow-panel: 0 20px 60px -10px hsl(222 80% 0% / 0.8);
+
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 222 47% 4%;
+    --sidebar-foreground: 160 30% 96%;
+    --sidebar-primary: 160 100% 55%;
+    --sidebar-primary-foreground: 222 47% 4%;
+    --sidebar-accent: 222 30% 12%;
+    --sidebar-accent-foreground: 160 30% 96%;
+    --sidebar-border: 160 50% 20%;
+    --sidebar-ring: 160 100% 55%;
+  }
+
+  .dark {
+    /* Same as root — app is always dark */
+    --background: 222 47% 4%;
+    --foreground: 160 30% 96%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    @apply h-full;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background:
+      radial-gradient(ellipse at top, hsl(195 100% 10% / 0.3), transparent 50%),
+      radial-gradient(ellipse at bottom, hsl(160 100% 8% / 0.3), transparent 50%),
+      hsl(var(--background));
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: var(--gradient-panel);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border: 1px solid hsl(var(--primary) / 0.2);
+    box-shadow: var(--shadow-panel), inset 0 1px 0 hsl(var(--primary) / 0.1);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.6), 0 0 40px hsl(var(--primary) / 0.3);
+  }
+
+  .neon-border {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.4), inset 0 0 20px hsl(var(--primary) / 0.05);
+    border: 1px solid hsl(var(--primary) / 0.4);
+  }
+
+  .typing-cursor::after {
+    content: '▊';
+    @apply ml-1 text-primary;
+    animation: blink 1s steps(2) infinite;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 3px;
+  }
+}
+
+@layer utilities {
+  .text-emotion-critical {
+    color: hsl(var(--emotion-critical));
+  }
+
+  .text-emotion-calm {
+    color: hsl(var(--emotion-calm));
+  }
+
+  .text-emotion-healing {
+    color: hsl(var(--emotion-healing));
+  }
+
+  .text-emotion-sad {
+    color: hsl(var(--emotion-sad));
+  }
+
+  .text-emotion-angry {
+    color: hsl(var(--emotion-angry));
+  }
+
+  .bg-emotion-critical {
+    background-color: hsl(var(--emotion-critical));
+  }
+
+  .bg-emotion-calm {
+    background-color: hsl(var(--emotion-calm));
+  }
+
+  .bg-emotion-healing {
+    background-color: hsl(var(--emotion-healing));
+  }
+
+  .bg-emotion-sad {
+    background-color: hsl(var(--emotion-sad));
+  }
+
+  .bg-emotion-angry {
+    background-color: hsl(var(--emotion-angry));
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes soundwave {
+
+  0%,
+  100% {
+    transform: scaleY(0.4);
+  }
+
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes particle-drift {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--dx), var(--dy));
+    opacity: 0;
+  }
+}
