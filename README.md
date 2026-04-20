@@ -1,73 +1,90 @@
-# React + TypeScript + Vite
+# EarthVoice
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive, voice-forward globe UI built with React, Vite, TypeScript and Tailwind CSS.
 
-Currently, two official plugins are available:
+EarthVoice presents location memories, ambient sound control, and collaborative cursors on a 3D globe. It's focused on exploration and multimedia memory timelines.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Key features
 
-## React Compiler
+- Interactive 3D globe visualization (using `react-globe.gl`)
+- Memory timeline with location-based memories
+- Ambient audio controls and voice/visitor presence features
+- Visitor cursors and small collaborative UX touches
+- Tours/demos with guided steps
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech stack
 
-## Expanding the ESLint configuration
+- Vite + TypeScript
+- React 19
+- Tailwind CSS
+- react-globe.gl for globe rendering
+- sonner for toast UI
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Quick start (Windows / PowerShell)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Install dependencies
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```powershell
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Run the dev server (hosted for LAN testing)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```powershell
+npm run dev
 ```
+
+3. Build for production
+
+```powershell
+npm run build
+```
+
+4. Preview the production build locally
+
+```powershell
+npm run preview
+```
+
+Useful scripts (from `package.json`)
+
+- `dev` — start Vite dev server (with `--host` flag)
+- `build` — run `tsc -b` then `vite build`
+- `preview` — preview the production build
+- `lint` — run ESLint across the project
+
+## Project structure (important files)
+
+- `index.html` — app entry HTML
+- `src/main.tsx` — React entry
+- `src/App.tsx` — top-level app component
+- `src/pages/` — route pages (e.g., `Home.tsx`, `NotFound.tsx`)
+- `src/components/` — UI and domain components (Globe, HUD, VoicePanel, etc.)
+- `src/lib/` — small libraries (api, ambient, memory, presence)
+- `src/data/locations.ts` — sample locations data
+- `tailwind.config.ts` — Tailwind CSS config
+
+Explore the `src/components` folder for smaller UI primitives in `src/components/ui`.
+
+## Development notes and assumptions
+
+- This repository uses TypeScript; run the typechecker if you modify types: `tsc -b`.
+- Tailwind utilities are used in `index.css` / `src/index.css`.
+- Some packages appear to be shadcn/shadui and custom components — follow existing patterns when adding UI.
+
+## Tests & linting
+
+- ESLint is configured; run `npm run lint` to check code style.
+- There are no unit tests included by default; adding a small test harness (Vitest or Jest) is a recommended next step.
+
+## Contributing
+
+1. Fork and create a feature branch.
+2. Keep changes focused and add small commits with clear messages.
+3. Run `npm run lint` and `tsc -b` before opening a PR.
+
+If you add features that affect the public API or UI primitives, include a brief example in the README or a Storybook story.
+
+## Contact
+
+If you want help or to report issues, open an issue in the repository.
